@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* ======== 1. STYLE GUIDE (VARIABLES) ======== */
+:root {
+    /* Fonts */
+    --font-main: 'Inter', sans-serif;
+    --weight-body: 400;
+    --weight-headline: 600;
+
+    /* Colors */
+    --color-bg: #EFF7FF;
+    --color-text: #000000;
+    --color-accent: #2E4694;
+}
+
+
+/* ======== 2. GLOBAL RESET & BODY STYLES ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    font-weight: var(--weight-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* ======== 3. DESKTOP NAVIGATION (Vertical) ======== */
+.desktop-nav {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.desktop-nav ul {
+    text-align: right;
+}
+
+.desktop-nav li {
+    margin-bottom: 1.5rem;
+}
+
+.desktop-nav a {
+    font-weight: var(--weight-body);
+    font-size: 1rem;
+    color: var(--color-text); /* Default is black */
+}
+
+/* Navbar "Exception" Styles */
+.desktop-nav.is-over-dark a {
+    color: var(--color-bg); /* White text on dark bg */
+}
+
+.desktop-nav a.is-active {
+    font-weight: var(--weight-headline);
+    color: var(--color-accent); /* Blue active link */
+}
+
+.desktop-nav.is-over-dark a.is-active {
+    color: #FFFFFF; /* Bright white active link */
+}
+
+
+/* ======== 4. MOBILE NAVIGATION STYLES ======== */
+.mobile-nav-toggle {
+    display: block; /* Visible by default on mobile */
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+}
+
+.mobile-nav-toggle span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--color-text);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* "X" animation */
+.mobile-nav-toggle.is-active span:nth-child(1) {
+    transform: translateY(10.5px) rotate(45deg);
+}
+.mobile-nav-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.mobile-nav-toggle.is-active span:nth-child(3) {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* The full-screen menu overlay */
+.mobile-nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: all 0.4s ease;
+}
+
+.mobile-nav-menu.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mobile-nav-menu ul {
+    text-align: center;
+}
+
+.mobile-nav-menu li {
+    margin-bottom: 3rem;
+}
+
+.mobile-nav-menu a {
+    font-size: 2rem;
+    font-weight: var(--weight-headline);
+    color: var(--color-accent);
+}
+
+.mobile-nav-menu a.is-active {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+
+/* ======== 5. HERO SECTION ======== */
+.hero-section {
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vw;
+}
+
+.hero-headline {
+    font-weight: var(--weight-headline);
+    color: var(--color-accent);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    margin-bottom: 1rem;
+}
+
+.hero-subheadline {
+    font-weight: var(--weight-body);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--color-text);
+}
+
+
+/* ======== 6. CONTENT SECTIONS (Scaffolding) ======== */
+.content-section {
+    padding: 100px 5vw;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.content-section h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--weight-headline);
+    color: var(--color-accent);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+#about p, #academics p, #debate p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+
+/* ======== 7. DEVELOPER SECTION (Project Grid) ======== */
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: #FFF;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.project-card h3 {
+    font-weight: var(--weight-headline);
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; 
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tags li {
+    background-color: var(--color-bg);
+    color: var(--color-accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.project-links a {
+    font-weight: var(--weight-headline);
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+
+/* ======== 8. PHOTOGRAPHER SECTION (Photo Grid) ======== */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.photo-item img:hover {
+    transform: scale(1.03);
+}
+
+
+/* ======== 9. CONTACT SECTION ======== */
+.contact-section {
+    padding: 100px 5vw;
+    background-color: var(--color-accent);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-section h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--weight-headline);
+    color: var(--color-bg);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column; /* Stacks form on top of icons */
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    gap: 3rem;
+}
+
+.contact-form {
+    width: 100%;
+    max-width: 600px; /* Constrain form width */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem 1rem; /* Cleaner padding */
+    border-radius: 8px;
+    border: 2px solid var(--color-bg);
+    background: transparent;
+    color: #FFFFFF;
+    font-family: var(--font-main);
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #FFFFFF;
+}
+
+.form-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--color-bg);
+    color: var(--color-accent);
+    font-weight: var(--weight-headline);
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-button:hover {
+    background: #FFFFFF;
+    transform: translateY(-3px);
+}
+
+/* Renamed to social-icons and styled as a centered row */
+.social-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px; /* Match form width */
+}
+
+.social-icons svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--color-bg);
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover svg {
+    stroke: #FFFFFF;
+    transform: scale(1.1);
+}
+
+
+/* ======== 10. FOOTER ======== */
+footer {
+    text-align: center;
+    padding: 2rem 5vw;
+    font-size: 0.9rem;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    opacity: 0.8;
+}
+
+footer p {
+    color: var(--color-bg);
+}
+
+
+/* ======== 11. RESPONSIVE DESIGN (Desktop) ======== */
+@media (min-width: 768px) {
+    
+    /* --- Navigation --- */
+    .desktop-nav {
+        display: block;
+    }
+    .mobile-nav-toggle,
+    .mobile-nav-menu {
+        display: none;
+    }
+    
+    /* --- Layout --- */
+    .hero-section,
+    .content-section {
+        padding-right: 150px; 
+    }
+    
+    /* Make contact section full-width */
+    .contact-section {
+        padding-right: 150px;
+    }
+
+    /* --- Section Grids --- */
+    .project-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* --- DELETED: Contact Layout --- */
+    /* (The side-by-side rules have been removed) */
+}
+
+/* ======== 14. ACHIEVEMENTS LIST (Debate/Academics) ======== */
+.achievements-list {
+    list-style: none;
+    max-width: 750px; /* Matches the paragraph width */
+    margin: 0 auto; /* Centers the list */
+}
+
+.achievements-list li {
+    background-color: #FFFFFF; /* White card style */
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+}
+
+.achievements-list strong {
+    color: var(--color-accent); /* Blue for the event title */
+}
+
+.achievements-list .list-detail {
+    display: block; /* Puts it on a new line */
+    font-size: 0.95rem;
+    opacity: 0.7; /* Fades it slightly */
+    margin-top: 0.25rem;
+}
+
+/* ======== 15. BUTTONS ======== */
+.button-container {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: #FFFFFF;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: var(--weight-headline);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--color-text); /* Black on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: #FFFFFF;
+}
+
+/* ======== 18. FORM STYLING FIX (Placeholders & Padding) ======== */
+
+/* This hides the labels from view but keeps them for accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* This rule finds the old input/textarea styles and updates the padding */
+.form-group input,
+.form-group textarea {
+    padding: 1rem 1rem; /* Increased vertical padding */
+}
+
+/* This styles the new placeholder text */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--color-bg);
+    opacity: 0.7; /* Make it a bit more subtle */
+    font-family: var(--font-main);
+}
